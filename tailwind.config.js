@@ -8,7 +8,7 @@ export default {
     },
     extend: {
       colors: {
-        primary: "var(--color-primary)",
+        primary: "rgba(var(--color-primary), var(--tw-bg-opacity))",
         caption: "var(--color-caption)",
       },
     },
