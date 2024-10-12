@@ -5,7 +5,7 @@ import { Controller, useFormContext } from "react-hook-form";
 const SurnameInput = (inputProps: InputProps) => {
   const {
     control,
-    formState: { errors }
+    formState: { errors },
   } = useFormContext<UserSurname>();
 
   return (
@@ -14,13 +14,17 @@ const SurnameInput = (inputProps: InputProps) => {
       validateStatus={errors.surname ? "error" : ""}
       layout="vertical"
       help={errors.surname ? errors.surname.message : ""}
-      required>
+      required
+    >
       <Controller
         control={control}
         name="surname"
         rules={{
           required: "To pole jest wymagane",
-          maxLength: { value: 50, message: "Nazwisko nie może przekraczać 50 znaków" }
+          maxLength: {
+            value: 50,
+            message: "Nazwisko nie może przekraczać 50 znaków",
+          },
         }}
         render={({ field }) => <Input {...field} {...inputProps} />}
       />

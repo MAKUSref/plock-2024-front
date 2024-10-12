@@ -2,21 +2,19 @@ export interface UserBase {
   name: string;
   surname: string;
   email: string;
-  phone?: string;
   role: UserRole;
-  version?: number;
+  description?: string;
+  imgSrc?: string;
 }
 
 export interface User extends UserBase {
   id: string;
-  banned: boolean;
-  isActivated: boolean;
+  description?: string;
 }
 
 export type UserName = Pick<UserBase, "name">;
 export type UserSurname = Pick<UserBase, "surname">;
 export type UserEmail = Pick<UserBase, "email">;
-export type UserPhone = Pick<UserBase, "phone">;
 
 export type UserRole = "admin" | "auditor" | "client";
 
@@ -29,7 +27,7 @@ export type ActivateTokenPayload = Omit<UserBase, "role" | "version">;
 
 export type LoginSchema = Pick<UserBase, "email"> & { password: string };
 
-export interface ActivateAccountSchema extends Pick<UserBase, "phone"> {
+export interface ActivateAccountSchema {
   password: string;
   activateToken: string;
 }
