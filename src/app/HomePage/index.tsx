@@ -21,7 +21,7 @@ const HomePage = () => {
             placeholder="Wyszukaj szkolenie"
           />
         </div>
-        <div className="flex gap-[10px] py-3">
+        <div className="flex gap-[10px] py-3 flex-wrap">
           <Tag
             bordered={false}
             color="purple"
