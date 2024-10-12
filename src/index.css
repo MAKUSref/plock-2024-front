@@ -25,10 +25,14 @@
   }
 
   h2 {
-    @apply text-7xl leading-snug font-bold;
+    @apply text-6xl leading-snug font-bold;
   }
 
   h3 {
+    @apply text-4xl font-semibold;
+  }
+
+  h4 {
     @apply text-4xl font-semibold;
   }
 }

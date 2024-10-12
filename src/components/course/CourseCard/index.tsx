@@ -2,10 +2,11 @@ import PATHS from "@/router/paths";
 import { Course } from "@/types/course";
 import { formatDate } from "@/utils/formatDate";
 import { Button } from "antd";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const CourseCard = ({
-  course: { coverImgSrc, description, dateTime, title },
+  course: { _id, coverImgSrc, description, dateTime, title },
 }: {
   course: Course;
 }) => {
@@ -14,7 +15,7 @@ const CourseCard = ({
   return (
     <div
       className="bg-white rounded-lg overflow-hidden cursor-pointer border hover:shadow-lg h-full flex flex-col "
-      onClick={() => navigate(PATHS.COURSE)}
+      onClick={() => navigate(PATHS.COURSE.replace(":id", _id))}
     >
       <div
         style={{ backgroundImage: `url(${coverImgSrc})` }}
@@ -28,9 +29,11 @@ const CourseCard = ({
         <p className="text-slate-800 line-clamp-3">{description}</p>
       </div>
       <div className="p-5">
-        <Button className="w-full" variant="outlined" color="primary">
-          Zobacz więcej
-        </Button>
+        <Link to={PATHS.COURSE.replace(":id", _id)}>
+          <Button className="w-full" variant="outlined" color="primary">
+            Zobacz więcej
+          </Button>
+        </Link>
       </div>
     </div>
   );
