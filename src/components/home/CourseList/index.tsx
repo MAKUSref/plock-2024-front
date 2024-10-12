@@ -75,7 +75,12 @@ const CourseList = () => {
         </Card>
       )}
 
-      <div className="mt-20 grid grid-cols-3 gap-8">
+      <p className="mt-6 text-lg">
+        {!!searchText && !!searchTag
+          ? `Wyszukane kursy (${courses?.length}):`
+          : `Wszystkie kursy (${courses?.length}):`}
+      </p>
+      <div className="mt-6 grid grid-cols-3 gap-4">
         {courses?.map((course, index) => (
           <CourseCard key={index} course={course} />
         ))}
