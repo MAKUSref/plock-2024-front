@@ -14,14 +14,14 @@ const HumburgerMenu = ({ isOpen, onClose, navItems }: HumburgerMenuProps) => {
   return (
     <>
       <div
-        className={`fixed md:hidden top-0 bottom-0 left-0 right-0 z-10 bg-black bg-opacity-50 ${
+        className={`fixed md:hidden top-0 bottom-0 left-0 right-0 z-20 bg-black bg-opacity-50 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
         onClick={onClose}
       ></div>
 
       <div
-        className={`fixed top-0 bottom-0 left-0 w-5/6 bg-white p-8 z-20 duration-300 transition-transform ${
+        className={`fixed top-0 bottom-0 left-0 w-5/6 bg-white p-8 z-30 duration-300 transition-transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
         onClick={(e) => e.stopPropagation()}

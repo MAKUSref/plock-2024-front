@@ -5,10 +5,11 @@ interface NavItemsProps {
   items: NavItem[];
   itemClassName?: string;
   itemChildren?: React.ReactNode;
+  navbarVisible?: boolean;
   onClose?: () => void;
 }
 
-const NavItems = ({ items, itemClassName, itemChildren, onClose }: NavItemsProps) => {
+const NavItems = ({ items, itemClassName, itemChildren, navbarVisible = true, onClose }: NavItemsProps) => {
   const navigate = useNavigate();
 
   const navigateTo = (path: string) => {
@@ -22,9 +23,9 @@ const NavItems = ({ items, itemClassName, itemChildren, onClose }: NavItemsProps
         <NavLink
           key={i}
           to={path}
-          className={({ isActive }) =>
+          className={() =>
             `${
-              isActive ? "text-gray-900" : "text-caption"
+              navbarVisible ? "text-caption" : "text-white"
             } hover:text-gray-900 text-base ${itemClassName}`
           }
           onClick={() => navigateTo(path)}

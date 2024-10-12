@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import NavItems from "./NavItems";
 import { MenuOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HumburgerMenu from "./HumburgerMenu";
 
 export interface NavItem {
@@ -27,20 +27,41 @@ const NAV_ITEMS: NavItem[] = [
 ];
 
 const Navbar = () => {
+  const [navbarVisible, setNavbarVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setNavbarVisible(true);
+      } else {
+        setNavbarVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
-      <nav className="fixed w-full bg-white">
-        <div className="container flex justify-between items-center py-8">
+      <nav className={`fixed w-full z-10 transition-colors ${navbarVisible ? "bg-white" : "bg-transparent"}`}>
+        <div className="container flex justify-between items-center py-6">
           <div className="">
             <Link to={PATHS.HOME}>
-              <img src="/img/logo-main.svg" alt="..." />
+              {navbarVisible ? (
+                <img src="/img/logo-main.svg" alt="..." />
+              ) : (
+                <img src="/img/logo-main-light.svg" alt="..." />
+              )}
             </Link>
           </div>
-          <div className="hidden md:flex gap-8">
-            <NavItems items={NAV_ITEMS} onClose={() => setIsOpen(false)} />
-            <NavLink to={PATHS.LOGIN} className="text-primary">
+          <div className="hidden md:flex items-center gap-8">
+            <NavItems items={NAV_ITEMS} onClose={() => setIsOpen(false)} navbarVisible={navbarVisible} />
+            <NavLink to={PATHS.LOGIN} className="text-primary bg-white py-2 px-5 rounded-md">
               Zaloguj się
             </NavLink>
           </div>
