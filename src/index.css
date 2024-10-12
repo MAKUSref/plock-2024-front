@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-primary: #233588;
+  }
+
   html,
   body {
     margin: 0;
