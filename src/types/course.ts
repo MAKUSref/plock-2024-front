@@ -10,4 +10,5 @@ export interface Course {
   location: string;
   lecturers: User[];
   files?: string[];
+  coverImgSrc: string;
 }
