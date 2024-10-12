@@ -1,27 +1,37 @@
 import { ActivateAccountFormSchema } from "@/types/user";
+import { LockOutlined } from "@ant-design/icons";
 import { Form, Input, InputProps } from "antd";
 import { Controller, useFormContext } from "react-hook-form";
 
 const ConfirmPasswordInput = ({ size }: InputProps) => {
   const {
     control,
-    formState: { errors }
+    formState: { errors },
   } = useFormContext<Pick<ActivateAccountFormSchema, "confirmPassword">>();
 
   return (
     <Form.Item
-      label="Powtórz hasło"
+      label={undefined}
       validateStatus={errors.confirmPassword ? "error" : ""}
       layout="vertical"
       help={errors.confirmPassword ? errors.confirmPassword.message : ""}
-      required>
+      required
+    >
       <Controller
         control={control}
         name="confirmPassword"
         rules={{
-          required: "To pole jest wymagane"
+          required: "To pole jest wymagane",
         }}
-        render={({ field }) => <Input {...field} type="password" size={size} />}
+        render={({ field }) => (
+          <Input
+            prefix={<LockOutlined />}
+            placeholder="Potwierdź hasło"
+            {...field}
+            type="password"
+            size={size}
+          />
+        )}
       />
     </Form.Item>
   );

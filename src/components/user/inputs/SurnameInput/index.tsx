@@ -2,7 +2,11 @@ import { UserSurname } from "@/types/user";
 import { Form, Input, InputProps } from "antd";
 import { Controller, useFormContext } from "react-hook-form";
 
-const SurnameInput = (inputProps: InputProps) => {
+interface SurnameInputProps extends InputProps {
+  minimal?: boolean;
+}
+
+const SurnameInput = ({ minimal, ...inputProps }: SurnameInputProps) => {
   const {
     control,
     formState: { errors },
@@ -10,7 +14,7 @@ const SurnameInput = (inputProps: InputProps) => {
 
   return (
     <Form.Item
-      label="Nazwisko"
+      label={!minimal ? "Nazwisko" : undefined}
       validateStatus={errors.surname ? "error" : ""}
       layout="vertical"
       help={errors.surname ? errors.surname.message : ""}

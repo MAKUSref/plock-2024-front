@@ -14,7 +14,7 @@ const CourseCard = ({
 
   return (
     <div
-      className="bg-white rounded-lg overflow-hidden cursor-pointer border hover:shadow-lg h-full flex flex-col "
+      className="bg-white rounded-xl overflow-hidden cursor-pointer border hover:shadow-lg h-full flex flex-col "
       onClick={() => navigate(PATHS.COURSE.replace(":id", _id))}
     >
       <div

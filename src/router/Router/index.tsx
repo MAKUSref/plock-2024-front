@@ -1,15 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { useAuth, useUserRole } from "@/redux/selectors";
-import publicRoutes from "@/router/publicRoutes";
-import privateRoutes from "@/router/privateRoutes";
+import routes from "@/router/routes";
 
 const Router = () => {
-  const isAuth = useAuth();
-  const userRole = useUserRole();
-  const router = createBrowserRouter([
-    ...(isAuth && userRole ? privateRoutes() : [{}]),
-    ...publicRoutes(),
-  ]);
+  const router = createBrowserRouter([...routes()]);
   return <RouterProvider router={router} />;
 };
 

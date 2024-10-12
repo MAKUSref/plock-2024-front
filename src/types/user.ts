@@ -16,7 +16,7 @@ export type UserName = Pick<UserBase, "name">;
 export type UserSurname = Pick<UserBase, "surname">;
 export type UserEmail = Pick<UserBase, "email">;
 
-export type UserRole = "admin" | "auditor" | "client";
+export type UserRole = "admin" | "lecturer" | "user";
 
 export interface JwtPayload extends Pick<User, "id" | "role" | "email"> {
   iat: number;

@@ -60,7 +60,7 @@ const LoginModal = ({ open, handleClose }: LoginModalProps) => {
               />
             )}
             <Button
-              className="w-full"
+              className="w-full py-6"
               type="primary"
               htmlType="submit"
               size="large"
