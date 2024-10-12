@@ -9,6 +9,7 @@ const HomePage = () => {
     <div className="container">
       <h1>Home Page</h1>
       <p>Welcome, in our site</p>
+
       <h2>Dostępne kursy</h2>
 
       {isLoading && (
