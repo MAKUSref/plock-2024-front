@@ -9,6 +9,7 @@ interface ProfileDropdownProps {
 }
 
 const ProfileDropdown = ({ navbarVisible }: ProfileDropdownProps) => {
+  // const role = useUserRole();
   const dispatch = useDispatch();
 
   const items: MenuProps["items"] = [
@@ -21,18 +22,14 @@ const ProfileDropdown = ({ navbarVisible }: ProfileDropdownProps) => {
       key: "0",
     },
     {
-      label: (
-        <Link className="text-base" to="/profile">
-          Twoje kursy
-        </Link>
-      ),
-      key: "1",
+      label: <Link className="text-base" to="/profile">Prelegenci</Link>,
+      key: '1',
     },
     {
       type: "divider",
     },
     {
-      label: "Wyloguj się",
+      label: <span className="text-red-500 text-base">Wyloguj się</span>,
       onClick: () => dispatch(clearAuthToken()),
       key: "3",
     },
