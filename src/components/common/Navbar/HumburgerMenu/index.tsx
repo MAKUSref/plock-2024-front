@@ -4,13 +4,13 @@ import { NavLink } from "react-router-dom";
 import { NavItem } from "..";
 import NavItems from "../NavItems";
 
-interface HumburgerMenuProps {
+interface HamburgerMenuProps {
   isOpen: boolean;
   onClose: () => void;
   navItems: NavItem[];
 }
 
-const HumburgerMenu = ({ isOpen, onClose, navItems }: HumburgerMenuProps) => {
+const HamburgerMenu = ({ isOpen, onClose, navItems }: HamburgerMenuProps) => {
   return (
     <>
       <div
@@ -56,4 +56,4 @@ const HumburgerMenu = ({ isOpen, onClose, navItems }: HumburgerMenuProps) => {
   );
 };
 
-export default HumburgerMenu;
+export default HamburgerMenu;

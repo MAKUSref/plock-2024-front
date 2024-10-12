@@ -1,10 +1,10 @@
 import PATHS from "@/router/paths";
-import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import NavItems from "./NavItems";
 import { MenuOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
-import HumburgerMenu from "./HumburgerMenu";
+import HamburgerMenu from "./HumburgerMenu";
+import LoginBtn from "./LoginBtn";
 
 export interface NavItem {
   title: string;
@@ -48,7 +48,11 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed w-full z-10 transition-colors ${navbarVisible ? "bg-white" : "bg-transparent"}`}>
+      <nav
+        className={`fixed w-full z-10 transition-colors ${
+          navbarVisible ? "bg-white" : "bg-transparent"
+        }`}
+      >
         <div className="container flex justify-between items-center py-6">
           <div className="">
             <Link to={PATHS.HOME}>
@@ -60,10 +64,12 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <NavItems items={NAV_ITEMS} onClose={() => setIsOpen(false)} navbarVisible={navbarVisible} />
-            <NavLink to={PATHS.LOGIN} className="text-primary bg-white py-2 px-5 rounded-md font-medium">
-              Zaloguj się
-            </NavLink>
+            <NavItems
+              items={NAV_ITEMS}
+              onClose={() => setIsOpen(false)}
+              navbarVisible={navbarVisible}
+            />
+            <LoginBtn />
           </div>
           <div className="block md:hidden">
             <button className="p-2" onClick={() => setIsOpen(true)}>
@@ -72,7 +78,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <HumburgerMenu
+      <HamburgerMenu
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         navItems={NAV_ITEMS}
