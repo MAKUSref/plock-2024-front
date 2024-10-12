@@ -12,7 +12,7 @@ const Intro = () => {
         />
       </div>
       <div className="container">
-        <div className="h-[65vh] flex flex-col justify-end items-center">
+        <div className="h-[75vh] flex flex-col justify-end items-center">
           <h1>Baza szkoleń PPPT</h1>
           <p className="font-normal mb-12 text-slate-600">
             Zbiór wszystkich szkoleń organizowanych przez Płocki Park
