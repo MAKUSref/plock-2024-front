@@ -4,6 +4,7 @@ const PATHS = {
   LOGIN: "/login",
   ACTIVATE_ACCOUNT: "/activate-account",
   COURSES: "/courses",
+  COURSE: "/courses/:id",
   ABOUT: "/about",
 };
 

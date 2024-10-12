@@ -4,6 +4,7 @@ import { Navigate, Outlet, RouteObject } from "react-router-dom";
 import ActivateAccountPage from "@/app/ActivateAccountPage";
 import HomePage from "@/app/HomePage";
 import Navbar from "@/components/common/Navbar";
+import CoursePage from "@/app/CoursePage";
 
 function publicRoutes(): RouteObject[] {
   return [
@@ -19,6 +20,10 @@ function publicRoutes(): RouteObject[] {
         {
           path: PATHS.HOME,
           element: <HomePage />,
+        },
+        {
+          path: PATHS.COURSE,
+          element: <CoursePage />,
         },
         {
           path: "*",

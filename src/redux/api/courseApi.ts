@@ -6,7 +6,10 @@ export const courseApi = baseApi.injectEndpoints({
     getCourses: builder.query<Course[], void>({
       query: () => "/course",
     }),
+    getCourse: builder.query<Course, number>({
+      query: (id) => `/course/${id}`,
+    }),
   }),
 });
 
-export const { useGetCoursesQuery } = courseApi;
+export const { useGetCoursesQuery, useGetCourseQuery } = courseApi;
