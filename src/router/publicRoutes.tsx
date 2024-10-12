@@ -1,26 +1,38 @@
 import Login from "@/app/LoginPage";
 import PATHS from "./paths";
-import { Navigate, RouteObject } from "react-router-dom";
+import { Navigate, Outlet, RouteObject } from "react-router-dom";
 import ActivateAccountPage from "@/app/ActivateAccountPage";
 import HomePage from "@/app/HomePage";
+import Navbar from "@/components/common/Navbar";
 
 function publicRoutes(): RouteObject[] {
   return [
     {
-      path: PATHS.HOME,
-      element: <HomePage />,
-    },
-    {
-      path: PATHS.LOGIN,
-      element: <Login />,
+      path: "/",
+      element: (
+        <>
+          <Navbar />
+          <Outlet />
+        </>
+      ),
+      children: [
+        {
+          path: PATHS.HOME,
+          element: <HomePage />,
+        },
+        {
+          path: "*",
+          element: <Navigate to={PATHS.HOME} replace />,
+        },
+      ],
     },
     {
       path: PATHS.ACTIVATE_ACCOUNT,
       element: <ActivateAccountPage />,
     },
     {
-      path: "*",
-      element: <Navigate to={PATHS.HOME} replace />,
+      path: PATHS.LOGIN,
+      element: <Login />,
     },
   ];
 }
