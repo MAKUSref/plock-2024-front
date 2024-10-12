@@ -22,7 +22,17 @@ export const courseApi = baseApi.injectEndpoints({
     getCourse: builder.query<Course, string>({
       query: (id) => `/course/${id}`,
     }),
+    signForCourse: builder.mutation<void, string>({
+      query: (id) => ({
+        method: "POST",
+        url: `/course/${id}/sign`,
+      }),
+    }),
   }),
 });
 
-export const { useGetCoursesQuery, useGetCourseQuery } = courseApi;
+export const {
+  useGetCoursesQuery,
+  useGetCourseQuery,
+  useSignForCourseMutation,
+} = courseApi;

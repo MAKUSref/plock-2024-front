@@ -14,29 +14,32 @@ const TAGS: CourseTag[] = [
   {
     name: "Marketing",
     color: "purple",
-    active: "purple-inverse"
+    active: "purple-inverse",
   },
   {
     name: "AI",
     color: "blue",
-    active: "blue-inverse"
+    active: "blue-inverse",
   },
   {
     name: "ZdrowiePsychiczne",
     color: "magenta",
-    active: "magenta-inverse"
+    active: "magenta-inverse",
   },
   {
     name: "Excel",
     color: "green",
-    active: "green-inverse"
-  }
+    active: "green-inverse",
+  },
 ];
 
 const CourseList = () => {
   const [searchText] = useState("");
   const [searchTag, setSearchTag] = useState("");
-  const { data: courses, isLoading } = useGetCoursesQuery({ searchTag, searchText });
+  const { data: courses, isLoading } = useGetCoursesQuery({
+    searchTag,
+    searchText,
+  });
 
   const handleSearchTag = (tag: string) => {
     if (searchTag === tag) {
@@ -44,7 +47,7 @@ const CourseList = () => {
       return;
     }
     setSearchTag(tag);
-  }
+  };
 
   return (
     <>
@@ -72,7 +75,7 @@ const CourseList = () => {
         </Card>
       )}
 
-      <div className="mt-20 grid grid-cols-3 gap-4">
+      <div className="mt-20 grid grid-cols-3 gap-8">
         {courses?.map((course, index) => (
           <CourseCard key={index} course={course} />
         ))}

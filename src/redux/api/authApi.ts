@@ -1,4 +1,4 @@
-import { ActivateAccountSchema, LoginSchema } from "@/types/user";
+import { ActivateAccountSchema, LoginSchema, UserBase } from "@/types/user";
 import { baseApi } from "./baseApi";
 
 export const authApi = baseApi.injectEndpoints({
@@ -22,7 +22,19 @@ export const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["me"],
     }),
+    signIn: builder.mutation<{ accessToken: string }, UserBase>({
+      query: (data) => ({
+        method: "POST",
+        url: "/user",
+        body: data,
+      }),
+      invalidatesTags: ["me"],
+    }),
   }),
 });
 
-export const { useLoginMutation, useActivateAccountMutation } = authApi;
+export const {
+  useLoginMutation,
+  useActivateAccountMutation,
+  useSignInMutation,
+} = authApi;
