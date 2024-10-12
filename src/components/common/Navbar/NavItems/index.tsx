@@ -25,8 +25,8 @@ const NavItems = ({ items, itemClassName, itemChildren, navbarVisible = true, on
           to={path}
           className={() =>
             `${
-              navbarVisible ? "text-caption" : "text-white"
-            } hover:text-gray-900 text-base ${itemClassName}`
+              navbarVisible ? "text-caption" : "text-gray-200"
+            } hover:text-white font-medium text-base ${itemClassName}`
           }
           onClick={() => navigateTo(path)}
         >

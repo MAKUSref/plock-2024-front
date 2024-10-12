@@ -6,7 +6,7 @@ export const courseApi = baseApi.injectEndpoints({
     getCourses: builder.query<Course[], void>({
       query: () => "/course",
     }),
-    getCourse: builder.query<Course, number>({
+    getCourse: builder.query<Course, string>({
       query: (id) => `/course/${id}`,
     }),
   }),

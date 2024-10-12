@@ -61,7 +61,7 @@ const Navbar = () => {
           </div>
           <div className="hidden md:flex items-center gap-8">
             <NavItems items={NAV_ITEMS} onClose={() => setIsOpen(false)} navbarVisible={navbarVisible} />
-            <NavLink to={PATHS.LOGIN} className="text-primary bg-white py-2 px-5 rounded-md">
+            <NavLink to={PATHS.LOGIN} className="text-primary bg-white py-2 px-5 rounded-md font-medium">
               Zaloguj się
             </NavLink>
           </div>
