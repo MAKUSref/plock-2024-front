@@ -5,6 +5,8 @@ import { MenuOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import HamburgerMenu from "./HumburgerMenu";
 import LoginBtn from "./LoginBtn";
+import { useAuth } from "@/redux/selectors";
+import ProfileDropdown from "./ProfileDropdown";
 
 export interface NavItem {
   title: string;
@@ -17,10 +19,6 @@ const NAV_ITEMS: NavItem[] = [
     path: PATHS.HOME,
   },
   {
-    title: "Baza Szkoleń",
-    path: PATHS.COURSES,
-  },
-  {
     title: "O nas",
     path: PATHS.ABOUT,
   },
@@ -29,6 +27,7 @@ const NAV_ITEMS: NavItem[] = [
 const Navbar = () => {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const isAuth = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,7 +68,11 @@ const Navbar = () => {
               onClose={() => setIsOpen(false)}
               navbarVisible={navbarVisible}
             />
-            <LoginBtn />
+            {isAuth ? (
+              <ProfileDropdown navbarVisible={navbarVisible} />
+            ) : (
+              <LoginBtn />
+            )}
           </div>
           <div className="block md:hidden">
             <button className="p-2" onClick={() => setIsOpen(true)}>
