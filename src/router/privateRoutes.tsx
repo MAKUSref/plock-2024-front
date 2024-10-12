@@ -1,14 +1,14 @@
 import { Navigate, RouteObject } from "react-router-dom";
 import PATHS from "./paths";
-import HomePage from "../app/HomePage";
+import CoursesPage from "@/app/dashboard/CoursesPage/index.ts";
 
 function privateRoutes(): RouteObject[] {
   return [
     {
-      path: PATHS.HOME,
-      element: <HomePage />,
+      path: PATHS.DASHBOARD,
+      element: <CoursesPage />,
     },
-    { path: "*", element: <Navigate to={PATHS.HOME} replace /> },
+    { path: "*", element: <Navigate to={PATHS.DASHBOARD} replace /> },
   ];
 }
 

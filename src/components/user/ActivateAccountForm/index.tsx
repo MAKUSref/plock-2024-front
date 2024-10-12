@@ -11,7 +11,6 @@ import EmailInput from "@/components/user/inputs/EmailInput";
 import PasswordInput from "@/components/user/inputs/PasswordInput";
 import ConfirmPasswordInput from "../inputs/ConfirmPasswordInput";
 import { useEffect } from "react";
-import PhoneNumberInput from "../inputs/PhoneNumberInput";
 
 interface ActivateAccountFormProps {
   accountData: Omit<UserBase, "role">;
@@ -30,14 +29,12 @@ const ActivateAccountForm = ({
     defaultValues: {
       name: accountData.name,
       surname: accountData.surname,
-      phone: accountData.phone,
       email: accountData.email,
     },
   });
 
   const onSubmit = ({
     password,
-    phone,
     confirmPassword,
   }: ActivateAccountFormSchema) => {
     if (password !== confirmPassword) {
@@ -47,7 +44,7 @@ const ActivateAccountForm = ({
       return;
     }
 
-    activateAccount({ password, phone, activateToken: activateToken })
+    activateAccount({ password, activateToken: activateToken })
       .unwrap()
       .then(({ accessToken }) => {
         dispatch(setAuthToken(accessToken ?? ""));
@@ -70,7 +67,6 @@ const ActivateAccountForm = ({
       <form onSubmit={formMethods.handleSubmit(onSubmit)}>
         <div className="flex flex-col w-full">
           <EmailInput disabled={true} size="large" />
-          <PhoneNumberInput size="large" />
           <PasswordInput validate size="large" />
           <ConfirmPasswordInput size="large" />
           <Form.Item>

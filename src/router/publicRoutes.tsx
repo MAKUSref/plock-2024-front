@@ -2,9 +2,14 @@ import Login from "@/app/LoginPage";
 import PATHS from "./paths";
 import { Navigate, RouteObject } from "react-router-dom";
 import ActivateAccountPage from "@/app/ActivateAccountPage";
+import HomePage from "@/app/HomePage";
 
 function publicRoutes(): RouteObject[] {
   return [
+    {
+      path: PATHS.HOME,
+      element: <HomePage />,
+    },
     {
       path: PATHS.LOGIN,
       element: <Login />,
@@ -15,7 +20,7 @@ function publicRoutes(): RouteObject[] {
     },
     {
       path: "*",
-      element: <Navigate to={PATHS.LOGIN} replace />,
+      element: <Navigate to={PATHS.HOME} replace />,
     },
   ];
 }
