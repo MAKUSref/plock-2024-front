@@ -41,10 +41,8 @@ const SignInModal = ({ open, handleClose }: SignInModalProps) => {
 
       dispatch(setAuthToken(accessToken ?? ""));
 
-      //FIXME: Signing for course not work (BE)
-
       await signForCourse(id!).unwrap();
-      notification.success({ message: "Zapisano na szkolenie!" });
+      notification.success({ message: "Zapisałeś się na szkolenie!" });
       handleClose();
     } catch (error) {
       setErrorMessage("Wystąpił błąd podczas rejestracji");

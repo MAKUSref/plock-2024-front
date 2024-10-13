@@ -11,35 +11,47 @@ interface ProfileDropdownProps {
 const ProfileDropdown = ({ navbarVisible }: ProfileDropdownProps) => {
   const dispatch = useDispatch();
 
-  const items: MenuProps['items'] = [
+  const items: MenuProps["items"] = [
     {
-      label: <Link className="text-base" to="/profile">Profil</Link>,
-      key: '0',
+      label: (
+        <Link className="text-base" to="/profile">
+          Profil
+        </Link>
+      ),
+      key: "0",
     },
     {
-      label: <Link className="text-base" to="/profile">Twoje kursy</Link>,
-      key: '1',
+      label: (
+        <Link className="text-base" to="/profile">
+          Twoje kursy
+        </Link>
+      ),
+      key: "1",
     },
     {
-      type: 'divider',
+      type: "divider",
     },
     {
-      label: 'Wyloguj się',
+      label: "Wyloguj się",
       onClick: () => dispatch(clearAuthToken()),
-      key: '3',
+      key: "3",
     },
   ];
 
   return (
-    <Dropdown menu={{ items }} trigger={['click']}>
+    <Dropdown menu={{ items }} trigger={["click"]}>
       <a onClick={(e) => e.preventDefault()}>
-        <Space className={`${navbarVisible ? "text-black" : "text-white"} cursor-pointer`}>
+        <Space
+          className={`${
+            navbarVisible ? "text-black" : "text-white"
+          } cursor-pointer`}
+        >
           <UserOutlined />
           <DownOutlined />
         </Space>
       </a>
     </Dropdown>
   );
-}
+};
 
 export default ProfileDropdown;

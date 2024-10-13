@@ -1,23 +1,56 @@
 import SignInModal from "@/components/auth/SignInModal";
+import {
+  useGetMyCoursesQuery,
+  useSignForCourseMutation,
+} from "@/redux/api/courseApi";
+import { useAuth } from "@/redux/selectors";
 import { EnvironmentOutlined } from "@ant-design/icons";
-import { Button } from "antd";
-import { useState } from "react";
+import { Button, notification } from "antd";
+import { useMemo, useState } from "react";
+import { useParams } from "react-router-dom";
+import CourseMemberBtn from "./CourseMemberBtn";
 
 const CourseDetailsCard = () => {
+  const { id } = useParams<{ id: string }>();
   const [registerModalOpen, setRegisterModalOpen] = useState(false);
+  const isAuth = useAuth();
+  const { data: myCourses } = useGetMyCoursesQuery();
+
+  const amICourseMember = useMemo(
+    () => myCourses?.some((course) => course._id === id),
+    [myCourses, id]
+  );
+
+  const [signForCourse] = useSignForCourseMutation();
+
+  const handleSignForCourse = async () => {
+    try {
+      await signForCourse(id!).unwrap();
+      notification.success({ message: "Zapisałeś się na szkolenie!" });
+    } catch (error) {
+      notification.error({ message: "Nie udało zapisac się na szkolenie" });
+      console.log(error);
+    }
+  };
 
   return (
     <>
       <div className="bg-white rounded-xl p-3 shadow-md -translate-y-2/3">
         <div>
-          <Button
-            className="text-xl py-7 rounded-lg font-semibold"
-            type="primary"
-            block
-            onClick={() => setRegisterModalOpen(true)}
-          >
-            Zapisz się!
-          </Button>
+          {amICourseMember && isAuth ? (
+            <CourseMemberBtn />
+          ) : (
+            <Button
+              className="text-xl py-7 rounded-lg font-semibold"
+              type="primary"
+              block
+              onClick={() =>
+                isAuth ? handleSignForCourse() : setRegisterModalOpen(true)
+              }
+            >
+              Zapisz się!
+            </Button>
+          )}
         </div>
         <div className="py-6 px-5">
           <p>14 października 2024</p>
