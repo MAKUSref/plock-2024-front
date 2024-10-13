@@ -51,11 +51,11 @@ const CourseList = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center">
+      <div className="flex md:flex-col items-center gap-3 flex-col-reverse">
         <div className="max-w-[500px] w-full py-3">
           <SearchInput />
         </div>
-        <div className="flex gap-1 py-3 flex-wrap">
+        <div className="flex gap-1 py-3 flex-wrap justify-center">
           {TAGS.map((tag, i) => (
             <Tag
               key={i}
@@ -70,7 +70,7 @@ const CourseList = () => {
         </div>
       </div>
 
-      <p className="mt-6 text-lg">
+      <p className="mt-40 md:mt-6   md:text-lg">
         {!!searchText && !!searchTag
           ? `Wyszukane szkolenia (${courses?.length}):`
           : `Wszystkie szkolenia (${courses?.length}):`}
@@ -78,7 +78,7 @@ const CourseList = () => {
       {courses?.length === 0 && (
         <Empty className="mt-20" description="Nie znaleziono szkoleń" />
       )}
-      <div className="mt-6 grid grid-cols-3 gap-6">
+      <div className="mt-6 grid grid-cols-1 sm:grid-flow-col-2 md:grid-cols-3  gap-6">
         {isLoading &&
           Array.from({ length: 6 }).map((_, index) => (
             <Card key={index} loading cover={<Skeleton.Image active />}>

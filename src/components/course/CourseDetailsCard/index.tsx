@@ -40,8 +40,8 @@ const CourseDetailsCard = () => {
   };
 
   return (
-    <div className="-translate-y-[160px] flex flex-col gap-6">
-      <div className="bg-white rounded-xl p-3 shadow-md ">
+    <div className=" md:-translate-y-[160px] flex flex-col gap-6">
+      <div className="bg-white rounded-xl p-3 shadow-md my-20 md:my-0">
         <div>
           {amICourseMember && isAuth ? (
             <CourseMemberBtn />

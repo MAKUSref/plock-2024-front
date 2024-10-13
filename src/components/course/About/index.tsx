@@ -12,7 +12,7 @@ const About = () => {
       <h3 className="mb-6 mt-10">O czym jest szkolenie?</h3>
       <p>{course?.description}</p>
       <h3 className="mt-20 mb-10">Prelegenci</h3>
-      <div className="flex gap-20 text-center">
+      <div className="flex gap-20 text-center justify-center flex-wrap md:justify-start">
         {course?.lecturers.map((speaker, index) => (
           <div key={index} className="flex flex-col gap-3">
             <Avatar size={200} icon={<UserOutlined />} src={speaker.imgSrc} />
