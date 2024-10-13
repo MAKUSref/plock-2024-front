@@ -51,7 +51,7 @@ const Navbar = () => {
     <>
       <nav
         className={`fixed w-full z-10 transition-colors ${
-          navbarVisible ? "bg-white shadow-md" : "bg-transparent"
+          navbarVisible ? "bg-white shadow-md" : "bg-[#3853CF]"
         }`}
       >
         <div className="container flex justify-between items-center py-6">

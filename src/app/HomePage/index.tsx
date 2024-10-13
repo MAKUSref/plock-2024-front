@@ -18,17 +18,8 @@ const HomePage = () => {
   if (!isAuth || selfCourses?.length === 0) {
     return (
       <div>
-        <div className=" absolute top-0 left-0 right-0 -z-10">
-          <img
-            src="/img/home-intro-top-2.svg"
-            alt="..."
-            className="w-full md:hidden"
-          />
-          <img
-            src="/img/home-intro-top.svg"
-            alt="..."
-            className="w-full hidden md:block"
-          />
+        <div className=" absolute top-20 left-0 right-0 -z-20">
+          <img src="/img/bg.png" alt="..." className="w-full" />
         </div>
         <HomeIntro />
         <div className="container">
@@ -41,7 +32,7 @@ const HomePage = () => {
   return (
     <div>
       <div className="absolute top-0 left-0 right-0 -z-10">
-        <img src="/img/home-intro-top.svg" alt="..." className="w-full" />
+        <img src="/img/bg.png" alt="..." className="w-full" />
       </div>
       <div className="container pt-60">
         {courses && (
