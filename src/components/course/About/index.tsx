@@ -21,8 +21,10 @@ const About = () => {
       <div className="flex gap-20 text-center">
         {course?.lecturers.map((speaker, index) => (
           <div key={index} className="flex flex-col gap-3">
-            <Avatar size={200} icon={<UserOutlined />} />
-            <p className="font-semibold">{speaker.name}</p>
+            <Avatar size={200} icon={<UserOutlined />} src={speaker.imgSrc} />
+            <p className="font-semibold">
+              {speaker.name} {speaker.surname}
+            </p>
             <p>{speaker.description}</p>
           </div>
         ))}

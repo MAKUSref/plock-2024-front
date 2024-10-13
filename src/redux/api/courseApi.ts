@@ -45,7 +45,7 @@ export const courseApi = baseApi.injectEndpoints({
     checkMyPresence: builder.mutation<void, { courseId: string }>({
       query: ({ courseId }) => ({
         method: "POST",
-        url: `/course/${courseId}/presence`,
+        url: `/course/${courseId}/attendance`,
       }),
       invalidatesTags: ["course"],
     }),

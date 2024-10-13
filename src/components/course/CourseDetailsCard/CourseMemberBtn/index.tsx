@@ -22,7 +22,7 @@ const CourseMemberBtn = () => {
 
   return (
     <>
-      {amIPresent ? (
+      {!amIPresent ? (
         <Button
           className="text-lg py-7 rounded-lg font-semibold"
           type="primary"

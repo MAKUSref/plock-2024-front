@@ -1,7 +1,7 @@
 import SearchInput from "@/components/common/SearchInput";
 import CourseCard from "@/components/course/CourseCard";
 import { useGetCoursesQuery } from "@/redux/api/courseApi";
-import { Card, Skeleton, Tag } from "antd";
+import { Card, Empty, Skeleton, Tag } from "antd";
 import { useState } from "react";
 
 interface CourseTag {
@@ -69,18 +69,22 @@ const CourseList = () => {
           ))}
         </div>
       </div>
-      {isLoading && (
-        <Card loading cover={<Skeleton.Image active />}>
-          <Card.Meta title="Nazwa szkolenia" description="Opis szkolenia" />
-        </Card>
-      )}
 
       <p className="mt-6 text-lg">
         {!!searchText && !!searchTag
           ? `Wyszukane szkolenia (${courses?.length}):`
           : `Wszystkie szkolenia (${courses?.length}):`}
       </p>
+      {courses?.length === 0 && (
+        <Empty className="mt-20" description="Nie znaleziono szkoleń" />
+      )}
       <div className="mt-6 grid grid-cols-3 gap-6">
+        {isLoading &&
+          Array.from({ length: 6 }).map((_, index) => (
+            <Card key={index} loading cover={<Skeleton.Image active />}>
+              <Card.Meta title="Nazwa szkolenia" description="Opis szkolenia" />
+            </Card>
+          ))}
         {courses?.map((course, index) => (
           <CourseCard key={index} course={course} />
         ))}

@@ -11,10 +11,10 @@ function publicRoutes(): RouteObject[] {
     {
       path: "/",
       element: (
-        <>
+        <div className="pb-40">
           <Navbar />
           <Outlet />
-        </>
+        </div>
       ),
       children: [
         {

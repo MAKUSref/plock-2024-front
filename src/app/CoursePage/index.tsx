@@ -1,14 +1,23 @@
 import About from "@/components/course/About";
 import CourseDetailsCard from "@/components/course/CourseDetailsCard";
 import CourseTabs from "@/components/course/CourseTabs";
-import { useGetCourseQuery } from "@/redux/api/courseApi";
+import { useGetCourseQuery, useGetMyCoursesQuery } from "@/redux/api/courseApi";
 import { useUserRole } from "@/redux/selectors";
+import { getRandomColor } from "@/utils/getRandomColor";
+import { Alert, Tag } from "antd";
+import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 
 const CoursePage = () => {
   const { id } = useParams<{ id: string }>();
   const { data: course } = useGetCourseQuery(id || "");
   const userRole = useUserRole();
+  const { data: myCourses } = useGetMyCoursesQuery();
+
+  const amICourseMember = useMemo(
+    () => myCourses?.some((c) => c._id === id),
+    [myCourses, id]
+  );
 
   return (
     <div>
@@ -21,18 +30,30 @@ const CoursePage = () => {
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-9">
               <h2 className="pb-10 text-white">{course?.title}</h2>
+              {amICourseMember && (
+                <Alert
+                  message="Jesteś zapisany na ten kurs"
+                  closable
+                  showIcon
+                />
+              )}
             </div>
           </div>
         </div>
       </div>
       <div className="container">
         <div className="grid grid-cols-12 gap-4">
+          <div className="flex col-span-8 mt-6">
+            {course?.tags.map((tag) => (
+              <Tag color={getRandomColor()}>#{tag}</Tag>
+            ))}
+          </div>
           {userRole === "admin" || userRole === "lecturer" ? (
-            <div className="col-span-8 mt-20">
+            <div className="col-span-8 ">
               <CourseTabs />
             </div>
           ) : (
-            <div className="col-span-8 mt-20">
+            <div className="col-span-8 ">
               <About />
             </div>
           )}
