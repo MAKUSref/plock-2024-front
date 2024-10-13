@@ -1,5 +1,6 @@
 import { useGetWordCloudByIdQuery } from "@/redux/api/wordCloudApi";
 import PATHS from "@/router/paths";
+import { getRandomColor } from "@/utils/getRandomColor";
 import { message, QRCode, Spin, Tag } from "antd";
 import { useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
@@ -36,7 +37,7 @@ const WordCloudPage = () => {
             <div className="px-4 py-6 flex flex-row gap-4 flex-wrap scroll-auto">
               {wordCloud?.words.map((word, index) => (
                 <Tag
-                  color="primary"
+                  color={getRandomColor()}
                   className="px-5 py-2 rounded-md text-3xl"
                   key={index}
                 >

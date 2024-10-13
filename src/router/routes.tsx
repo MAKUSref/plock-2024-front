@@ -5,15 +5,17 @@ import Navbar from "@/components/common/Navbar";
 import CoursePage from "@/app/CoursePage";
 import WordCloudPage from "@/app/WordCloudPage";
 import PassWordToCloudPage from "@/app/PassWordToCloudPage";
+import Footer from "@/components/common/Footer";
 
 function publicRoutes(): RouteObject[] {
   return [
     {
       path: "/",
       element: (
-        <div className="pb-40">
+        <div>
           <Navbar />
           <Outlet />
+          <Footer />
         </div>
       ),
       children: [
