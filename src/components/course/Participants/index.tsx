@@ -19,7 +19,7 @@ const Participants = () => {
         addonBefore={<WhatsAppOutlined />}
         placeholder="Link do grupy na whatsappie"
         allowClear
-        defaultValue={"https://chat.whatsapp.com/JWBCCEADu8z9efX9C4Wo2I"}
+        defaultValue={"https://chat.whatsapp.com/BiREZRCxPYP84PXiuPwmMn"}
       />
 
       <h5 className="mt-5">Liczba zapisanych osób: {participants?.length}</h5>
@@ -32,7 +32,7 @@ const Participants = () => {
           <>
             <List.Item
               actions={[
-                !item.attended ? (
+                item.attended ? (
                   <img src={CHECKMARK_IMG} className="w-5 h-5" />
                 ) : (
                   <div className="w-5 h-5 border border-slate-600 rounded-full" />

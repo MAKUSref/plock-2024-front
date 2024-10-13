@@ -1,5 +1,5 @@
 import PATHS from "@/router/paths";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import NavItems from "./NavItems";
 import { MenuOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
@@ -20,7 +20,15 @@ const NAV_ITEMS: NavItem[] = [
     path: PATHS.HOME,
   },
   {
+    title: "Oferta",
+    path: PATHS.ABOUT,
+  },
+  {
     title: "O nas",
+    path: PATHS.ABOUT,
+  },
+  {
+    title: "Kontakt",
     path: PATHS.ABOUT,
   },
 ];
@@ -29,6 +37,7 @@ const Navbar = () => {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const isAuth = useAuth();
+  const location = useLocation();
   const userRole = useUserRole();
 
   useEffect(() => {
@@ -51,7 +60,11 @@ const Navbar = () => {
     <>
       <nav
         className={`fixed w-full z-10 transition-colors ${
-          navbarVisible ? "bg-white shadow-md" : "bg-[#3853CF]"
+          navbarVisible
+            ? "bg-white shadow-md"
+            : location.pathname.includes("courses")
+            ? "bg-transparent"
+            : "bg-[#3853CF]"
         }`}
       >
         <div className="container flex justify-between items-center py-6">

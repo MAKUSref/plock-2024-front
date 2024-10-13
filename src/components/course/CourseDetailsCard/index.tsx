@@ -96,20 +96,23 @@ const CourseDetailsCard = () => {
           <SurveyBtn />
         </>
       )}
-      <div className="flex justify-center flex-col">
-        <p className="pb-2 mt-10 px-10 text-center">
-          <strong>Grupa</strong> informacyjna dla uczestników
-        </p>
-        <div className="flex justify-center">
-          <QRCode
-            size={200}
-            value={"https://chat.whatsapp.com/JWBCCEADu8z9efX9C4Wo2I"}
-            className="w-full"
-            icon={"/whatsapp.png"}
-            iconSize={40}
-          />
+      {(amICourseMember || userRole === "admin" || userRole === "lecturer") && (
+        <div className="flex justify-center flex-col">
+          <p className="pb-2 mt-10 px-10 text-center">
+            <strong>Grupa</strong> informacyjna dla uczestników
+          </p>
+          <div className="flex justify-center">
+            <QRCode
+              size={200}
+              value={"https://chat.whatsapp.com/BiREZRCxPYP84PXiuPwmMn"}
+              className="w-full"
+              icon={"/whatsapp.png"}
+              iconSize={40}
+            />
+          </div>
         </div>
-      </div>
+      )}
+
       <SignInModal
         open={registerModalOpen}
         handleClose={() => setRegisterModalOpen(false)}
