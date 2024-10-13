@@ -77,8 +77,8 @@ const CourseList = () => {
 
       <p className="mt-6 text-lg">
         {!!searchText && !!searchTag
-          ? `Wyszukane kursy (${courses?.length}):`
-          : `Wszystkie kursy (${courses?.length}):`}
+          ? `Wyszukane szkolenia (${courses?.length}):`
+          : `Wszystkie szkolenia (${courses?.length}):`}
       </p>
       <div className="mt-6 grid grid-cols-3 gap-6">
         {courses?.map((course, index) => (

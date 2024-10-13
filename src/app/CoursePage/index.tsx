@@ -10,8 +10,6 @@ const CoursePage = () => {
   const { data: course } = useGetCourseQuery(id || "");
   const userRole = useUserRole();
 
-  console.log(userRole);
-
   return (
     <div>
       <div

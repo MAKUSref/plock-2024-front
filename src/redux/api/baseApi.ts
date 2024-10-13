@@ -15,7 +15,7 @@ export const baseApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["me", "course"],
+  tagTypes: ["me", "course", "wordCloud"],
   endpoints: (builder) => ({
     invalidateAll: builder.mutation<void, void>({
       query: () => ({
