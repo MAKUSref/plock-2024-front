@@ -1,21 +1,25 @@
 import SignInModal from "@/components/auth/SignInModal";
 import {
+  useGetCourseQuery,
   useGetMyCoursesQuery,
   useSignForCourseMutation,
 } from "@/redux/api/courseApi";
-import { useAuth } from "@/redux/selectors";
-import { EnvironmentOutlined } from "@ant-design/icons";
+import { useAuth, useUserRole } from "@/redux/selectors";
+import { EnvironmentOutlined, FieldTimeOutlined } from "@ant-design/icons";
 import { Button, notification } from "antd";
 import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import CourseMemberBtn from "./CourseMemberBtn";
 import DownloadFilesBtn from "./DownloadFilesBtn";
 import SurveyBtn from "./SurveyBtn";
+import dayjs from "dayjs";
 
 const CourseDetailsCard = () => {
   const { id } = useParams<{ id: string }>();
   const [registerModalOpen, setRegisterModalOpen] = useState(false);
+  const { data: course } = useGetCourseQuery(id!);
   const isAuth = useAuth();
+  const userRole = useUserRole();
   const { data: myCourses } = useGetMyCoursesQuery();
 
   const amICourseMember = useMemo(
@@ -46,6 +50,11 @@ const CourseDetailsCard = () => {
               className="text-xl py-7 rounded-lg font-semibold"
               type="primary"
               block
+              disabled={
+                userRole === "admin" ||
+                userRole === "lecturer" ||
+                dayjs().isAfter(dayjs(course?.dateTime))
+              }
               onClick={() =>
                 isAuth ? handleSignForCourse() : setRegisterModalOpen(true)
               }
@@ -55,18 +64,38 @@ const CourseDetailsCard = () => {
           )}
         </div>
         <div className="py-6 px-5">
-          <p>14 października 2024</p>
-          <h4 className="my-1">18.30 - 20.00</h4>
+          <p>{dayjs(course?.dateTime).format("DD MMMM YYYY")}</p>
+          <h4 className="my-1">
+            {dayjs(course?.dateTime).format("HH:mm")}
+            {course?.duration && (
+              <>
+                {" - "}
+                {dayjs(course?.dateTime)
+                  .add(course?.duration ?? 0, "h")
+                  .format("HH:mm")}
+              </>
+            )}
+          </h4>
+          <div className="flex items-center gap-3 pt-3">
+            <div className="flex justify-center items-center rounded-full bg-primary bg-opacity-15 w-10 h-10 text-2xl">
+              <FieldTimeOutlined className="text-primary bg-opacity-100" />
+            </div>
+            <p className="caption">{course?.duration} h</p>
+          </div>
           <div className="flex items-center gap-3 pt-3">
             <div className="flex justify-center items-center rounded-full bg-primary bg-opacity-15 w-10 h-10 text-2xl">
               <EnvironmentOutlined className="text-primary bg-opacity-100" />
             </div>
-            <p className="caption">Łukasiewicza 39, Płock</p>
+            <p className="caption">{course?.location}</p>
           </div>
         </div>
       </div>
-      <DownloadFilesBtn />
-      <SurveyBtn />
+      {userRole === "user" && (
+        <>
+          <DownloadFilesBtn />
+          <SurveyBtn />
+        </>
+      )}
       <SignInModal
         open={registerModalOpen}
         handleClose={() => setRegisterModalOpen(false)}

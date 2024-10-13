@@ -2,8 +2,7 @@ import {
   useAddWordToWordCloudMutation,
   useGetWordCloudByIdQuery,
 } from "@/redux/api/wordCloudApi";
-import PATHS from "@/router/paths";
-import { Button, Input, message, QRCode } from "antd";
+import { Button, Input, message } from "antd";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
