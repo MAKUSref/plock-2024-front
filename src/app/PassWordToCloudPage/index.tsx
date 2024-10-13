@@ -2,8 +2,7 @@ import {
   useAddWordToWordCloudMutation,
   useGetWordCloudByIdQuery,
 } from "@/redux/api/wordCloudApi";
-import PATHS from "@/router/paths";
-import { Button, Input, message, notification, QRCode } from "antd";
+import { Button, Input, message, notification } from "antd";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -11,7 +10,6 @@ const PassWordToCloudPage = () => {
   const { id } = useParams<{ id: string }>();
   const { data: wordCloud } = useGetWordCloudByIdQuery(id!);
   const [word, setWord] = useState("");
-  const [wordSent, setWordSent] = useState(false);
 
   const [addWordToCloud] = useAddWordToWordCloudMutation();
 
@@ -19,7 +17,6 @@ const PassWordToCloudPage = () => {
     addWordToCloud({ word, wordCloudId: id! })
       .unwrap()
       .then(() => {
-        setWordSent(true);
         notification.success({ message: "Udało się dodać frazę!" });
         setWord("");
       })

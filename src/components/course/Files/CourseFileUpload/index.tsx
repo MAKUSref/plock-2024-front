@@ -28,9 +28,10 @@ const CourseFileUpload = () => {
       if (status === "done") {
         message.success(`${info.file.name} file uploaded successfully.`);
         console.log(info);
-        
+
         updateCourse({
           id: course?._id || "",
+          // @ts-ignore
           course: {
             ...course,
             files: [...(course?.files || []), ...info.file.response],
