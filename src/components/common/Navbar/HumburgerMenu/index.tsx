@@ -1,8 +1,8 @@
-import PATHS from "@/router/paths";
 import { RightOutlined } from "@ant-design/icons";
-import { NavLink } from "react-router-dom";
 import { NavItem } from "..";
 import NavItems from "../NavItems";
+import LoginBtn from "../LoginBtn";
+import { useAuth } from "@/redux/selectors";
 
 interface HamburgerMenuProps {
   isOpen: boolean;
@@ -11,6 +11,7 @@ interface HamburgerMenuProps {
 }
 
 const HamburgerMenu = ({ isOpen, onClose, navItems }: HamburgerMenuProps) => {
+  const isAuth = useAuth();
   return (
     <>
       <div
@@ -41,15 +42,12 @@ const HamburgerMenu = ({ isOpen, onClose, navItems }: HamburgerMenuProps) => {
               </button>
             }
           />
-          <NavLink
-            to={PATHS.LOGIN}
-            className="py-3 flex items-center text-primary rounded-[10px]"
-          >
-            Zaloguj się
-            <button className="ml-auto">
-              <RightOutlined />
-            </button>
-          </NavLink>
+          {isAuth ? (
+            // <ProfileDropdown navbarVisible={navbarVisible} />
+            <></>
+          ) : (
+            <LoginBtn />
+          )}
         </div>
       </div>
     </>
