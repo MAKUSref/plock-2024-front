@@ -44,6 +44,7 @@ const ProfileDropdown = ({ navbarVisible }: ProfileDropdownProps) => {
           } cursor-pointer`}
         >
           <UserOutlined />
+          <span>Adam Nowak</span>
           <DownOutlined />
         </Space>
       </a>
