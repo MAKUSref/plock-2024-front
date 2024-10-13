@@ -1,71 +1,35 @@
+import { useGetCourseQuery } from "@/redux/api/courseApi";
 import { CloudDownloadOutlined, FileTextFilled } from "@ant-design/icons";
-import { Button, List, Skeleton } from "antd";
-import { useEffect, useState } from "react";
-
-
-interface DataType {
-  gender?: string;
-  name: {
-    title?: string;
-    first?: string;
-    last?: string;
-  };
-  email?: string;
-  picture: {
-    large?: string;
-    medium?: string;
-    thumbnail?: string;
-  };
-  nat?: string;
-  loading: boolean;
-}
-
-const count = 3;
-const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
+import { Button } from "antd";
+import { useParams } from "react-router-dom";
 
 const FileList = () => {
-  const [initLoading, setInitLoading] = useState(true);
-  const [list, setList] = useState<DataType[]>([]);
+  const { id } = useParams<{ id: string }>();
+  const { data: course } = useGetCourseQuery(id || "");
 
-  useEffect(() => {
-    fetch(fakeDataUrl)
-      .then((res) => res.json())
-      .then((res) => {
-        setInitLoading(false);
-        setList(res.results);
-      });
-  }, []);
   return (
-    <List
-      // className="demo-loadmore-list"
-      loading={initLoading}
-      itemLayout="horizontal"
-      dataSource={list}
-      renderItem={(item) => (
-        <List.Item
-          actions={[
-            <Button download={'/path/to/file'}>
+    <>
+      {course?.files?.map((file, i) => (
+        <div className="flex justify-between py-4 border-b">
+          <div className="flex items-center gap-4">
+            <FileTextFilled className="text-2xl" />
+            <span>Plik {i + 1}</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <Button target="_blank" href={file} download={`Plik ${i + 1}`}>
               Pobierz <CloudDownloadOutlined />
-            </Button>,
+            </Button>
             <a
               key="list-loadmore-edit"
               className="text-red-500 hover:text-red-700"
             >
               Usuń
-            </a>,
-          ]}
-        >
-          <Skeleton avatar title={false} loading={item.loading} active>
-            <List.Item.Meta
-              className="py-2"
-              avatar={<FileTextFilled className="text-2xl" />}
-              title={<a href="https://ant.design">{item.name?.last}</a>}
-            />
-          </Skeleton>
-        </List.Item>
-      )}
-    />
+            </a>
+          </div>
+        </div>
+      ))}
+    </>
   );
-}
+};
 
 export default FileList;

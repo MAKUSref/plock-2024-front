@@ -52,6 +52,14 @@ export const courseApi = baseApi.injectEndpoints({
     getCourseParticipants: builder.query<Participant[], string>({
       query: (id) => `/course/${id}/participants`,
     }),
+    updateCourse: builder.mutation<Course, { id: string; course: Course }>({
+      query: ({ id, course }) => ({
+        method: "PUT",
+        url: `/course/${id}`,
+        body: course,
+      }),
+      invalidatesTags: ["course"],
+    }),
   }),
 });
 
@@ -63,4 +71,5 @@ export const {
   useAmIPresentQuery,
   useCheckMyPresenceMutation,
   useGetCourseParticipantsQuery,
+  useUpdateCourseMutation,
 } = courseApi;
