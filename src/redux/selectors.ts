@@ -8,7 +8,15 @@ export function useUserRole() {
 
   if (!authToken) return null;
 
-  return jwtDecode<JwtPayload>(authToken).role;
+  return jwtDecode<JwtPayload>(authToken).role?.toLowerCase();
+}
+
+export function useUserTokenInfo() {
+  const authToken = useAppSelector((state) => state.auth.token);
+
+  if (!authToken) return null;
+
+  return jwtDecode<JwtPayload>(authToken);
 }
 
 // return is user authorized
