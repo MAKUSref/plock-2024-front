@@ -9,7 +9,7 @@ const About = () => {
 
   return (
     <>
-      <h3 className="mb-6">O czym jest szkolenie?</h3>
+      <h3 className="mb-6 mt-10">O czym jest szkolenie?</h3>
       <p>
         {course?.description} Many desktop publishing packages and web page
         editors now use Lorem Ipsum as their default model text, and a search

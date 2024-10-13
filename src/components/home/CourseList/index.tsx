@@ -80,7 +80,7 @@ const CourseList = () => {
           ? `Wyszukane kursy (${courses?.length}):`
           : `Wszystkie kursy (${courses?.length}):`}
       </p>
-      <div className="mt-6 grid grid-cols-3 gap-4">
+      <div className="mt-6 grid grid-cols-3 gap-6">
         {courses?.map((course, index) => (
           <CourseCard key={index} course={course} />
         ))}

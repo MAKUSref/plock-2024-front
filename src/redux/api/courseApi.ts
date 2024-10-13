@@ -1,5 +1,5 @@
 import { baseApi } from "./baseApi";
-import { Course } from "@/types/course";
+import { Course, Participant } from "@/types/course";
 
 export const courseApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -49,6 +49,9 @@ export const courseApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["course"],
     }),
+    getCourseParticipants: builder.query<Participant[], string>({
+      query: (id) => `/course/${id}/participants`,
+    }),
   }),
 });
 
@@ -59,4 +62,5 @@ export const {
   useGetMyCoursesQuery,
   useAmIPresentQuery,
   useCheckMyPresenceMutation,
+  useGetCourseParticipantsQuery,
 } = courseApi;
