@@ -28,8 +28,10 @@ const CoursePage = () => {
         <div className="absolute bg-black bg-opacity-60 w-full h-full top-0 left-0 bottom-0 right-0"></div>
         <div className="container relative pb-8">
           <div className="grid grid-cols-12 gap-4">
-            <div className="col-span-9">
-              <h2 className="pb-10 text-white">{course?.title}</h2>
+            <div className="col-span-12 md:col-span-9">
+              <h2 className="pb-10 text-white break-words hyphens-manual">
+                {course?.title}
+              </h2>
               {amICourseMember && (
                 <Alert
                   message="Jesteś zapisany na ten kurs"
@@ -43,22 +45,22 @@ const CoursePage = () => {
       </div>
       <div className="container">
         <div className="grid grid-cols-12 gap-4">
-          <div className="flex col-span-8 mt-6">
+          <div className="flex col-span-12 md:col-span-8 mt-6 flex-wrap">
             {course?.tags.map((tag) => (
               <Tag color={getRandomColor()}>#{tag}</Tag>
             ))}
           </div>
           {userRole === "admin" || userRole === "lecturer" ? (
-            <div className="col-span-8 ">
+            <div className="col-span-12 md:col-span-8 ">
               <CourseTabs />
             </div>
           ) : (
-            <div className="col-span-8 ">
+            <div className="col-span-12 md:col-span-8 ">
               <About />
             </div>
           )}
 
-          <div className="col-span-3 col-start-10">
+          <div className="col-span-12 md:col-span-3 md:col-start-10">
             <CourseDetailsCard />
           </div>
         </div>

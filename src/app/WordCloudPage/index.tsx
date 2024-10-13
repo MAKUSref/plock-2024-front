@@ -4,7 +4,7 @@ import { message, QRCode, Spin, Tag } from "antd";
 import { useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 
-const BASE_URL = "http://192.168.143.26:5173";
+const BASE_URL = "http://192.168.143.52:5173";
 
 const WordCloudPage = () => {
   const { id } = useParams<{ id: string }>();

@@ -21,7 +21,7 @@
   }
 
   h1 {
-    @apply text-[5rem] text-[#3C3C3C] font-bold;
+    @apply text-8xl lg:text-[5rem] text-[#3C3C3C] font-bold;
   }
 
   h2 {

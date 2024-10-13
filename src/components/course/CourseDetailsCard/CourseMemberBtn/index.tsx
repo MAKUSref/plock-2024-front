@@ -2,6 +2,7 @@ import {
   useAmIPresentQuery,
   useCheckMyPresenceMutation,
 } from "@/redux/api/courseApi";
+import { CheckCircleOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import { useParams } from "react-router-dom";
 
@@ -10,7 +11,7 @@ const CourseMemberBtn = () => {
 
   const { data: amIPresent } = useAmIPresentQuery(id!);
 
-  const [checkMyPresence] = useCheckMyPresenceMutation();
+  const [checkMyPresence, { isLoading }] = useCheckMyPresenceMutation();
 
   const handleCheckMyPresence = async () => {
     try {
@@ -25,11 +26,14 @@ const CourseMemberBtn = () => {
       {!amIPresent ? (
         <Button
           className="text-lg py-7 rounded-lg font-semibold"
-          type="primary"
+          variant="outlined"
+          color="primary"
+          icon={<CheckCircleOutlined className="" />}
           block
+          loading={isLoading}
           onClick={handleCheckMyPresence}
         >
-          Zaznacz swoją obecność
+          Zaznacz obecność
         </Button>
       ) : (
         <div className="py-7 border rounded-lg text-center text-green-800 font-semibold border-green-300 bg-green-100">

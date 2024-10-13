@@ -72,7 +72,7 @@ const SignInModal = ({ open, handleClose }: SignInModalProps) => {
           <div className="mt-10">
             <NameInput size="large" minimal={true} />
             <EmailInput size="large" minimal={true} />
-            <PasswordInput minimal validate size="large" />
+            <PasswordInput minimal size="large" />
             <ConfirmPasswordInput size="large" />
             {errorMessage && (
               <Alert
