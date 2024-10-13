@@ -60,6 +60,12 @@ export const courseApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["course"],
     }),
+    getCourseSurveyes: builder.query<any[], string>({
+      query: (courseId) => `/survey/${courseId}/`,
+    }),
+    getCourseSummarry: builder.query<{ content: string }, string>({
+      query: (courseId) => `/survey/summary/${courseId}/`,
+    }),
   }),
 });
 
@@ -72,4 +78,6 @@ export const {
   useCheckMyPresenceMutation,
   useGetCourseParticipantsQuery,
   useUpdateCourseMutation,
+  useGetCourseSurveyesQuery,
+  useGetCourseSummarryQuery
 } = courseApi;

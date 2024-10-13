@@ -11,6 +11,7 @@ export interface Course {
   lecturers: User[];
   files?: string[];
   coverImgSrc: string;
+  participants: Participant[];
 }
 
 export interface Participant {
