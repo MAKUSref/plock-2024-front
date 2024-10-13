@@ -16,5 +16,5 @@ export interface Course {
 export interface Participant {
   _id: string;
   user: UserBase;
-  presence: boolean;
+  attended: boolean;
 }

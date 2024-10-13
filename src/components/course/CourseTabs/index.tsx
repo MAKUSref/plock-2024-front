@@ -62,14 +62,19 @@ const TABS: TabsProps["items"] = [
   },
   {
     key: "4",
-    label: "Ankieta końcowa",
-    children: <Survey />,
-  },
-  {
-    key: "5",
     label: "Aktywności",
     children: <Activities />,
     icon: <Icon style={{ fontSize: "32px" }} component={StarsSvg} />,
+  },
+  {
+    key: "5",
+    label: "Ankieta końcowa",
+    children: <Survey />,
+  },
+
+  {
+    key: "6",
+    label: "Ustawienia",
   },
 ];
 
