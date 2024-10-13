@@ -1,6 +1,7 @@
 import EmailInput from "@/components/user/inputs/EmailInput";
 import PasswordInput from "@/components/user/inputs/PasswordInput";
 import { useLoginMutation } from "@/redux/api/authApi";
+import { useInvalidateAllMutation } from "@/redux/api/baseApi";
 import { useAppDispatch } from "@/redux/hooks";
 import { setAuthToken } from "@/redux/slice/auth";
 import { LoginSchema } from "@/types/user";
@@ -18,6 +19,7 @@ interface LoginModalProps {
 const LoginModal = ({ open, handleClose }: LoginModalProps) => {
   const dispatch = useAppDispatch();
   const [login, { isLoading }] = useLoginMutation();
+  const [invalidateData] = useInvalidateAllMutation();
   const formMethods = useForm<LoginSchema>();
   const [errorMessage, setErrorMessage] = useState<string>("");
 
@@ -27,6 +29,7 @@ const LoginModal = ({ open, handleClose }: LoginModalProps) => {
       .then(({ accessToken }) => {
         dispatch(setAuthToken(accessToken ?? ""));
         handleClose();
+        invalidateData();
       })
       .catch((error) => {
         setErrorMessage(error.data.message);

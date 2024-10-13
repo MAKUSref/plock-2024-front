@@ -1,3 +1,4 @@
+import { useGetSelfInfoQuery } from "@/redux/api/authApi";
 import { clearAuthToken } from "@/redux/slice/auth";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
 import { Dropdown, MenuProps, Space } from "antd";
@@ -9,6 +10,7 @@ interface ProfileDropdownProps {
 }
 
 const ProfileDropdown = ({ navbarVisible }: ProfileDropdownProps) => {
+  const { data: selfInfo } = useGetSelfInfoQuery();
   // const role = useUserRole();
   const dispatch = useDispatch();
 
@@ -44,7 +46,7 @@ const ProfileDropdown = ({ navbarVisible }: ProfileDropdownProps) => {
           } cursor-pointer`}
         >
           <UserOutlined />
-          <span>Adam Nowak</span>
+          <span>{selfInfo?.name} {selfInfo?.surname}</span>
           <DownOutlined />
         </Space>
       </a>

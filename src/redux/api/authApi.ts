@@ -1,15 +1,19 @@
-import { ActivateAccountSchema, LoginSchema, UserBase } from "@/types/user";
+import { ActivateAccountSchema, LoginSchema, User, UserBase } from "@/types/user";
 import { baseApi } from "./baseApi";
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    getSelfInfo: builder.query<User, void>({
+      query: () => "/user/self/info",
+      providesTags: ["me"],
+    }),
     login: builder.mutation<{ accessToken: string }, LoginSchema>({
       query: (data) => ({
         method: "POST",
         url: "/auth/login",
         body: data,
       }),
-      invalidatesTags: ["me"],
+      invalidatesTags: ["me", "course"],
     }),
     activateAccount: builder.mutation<
       { accessToken: string },
@@ -34,6 +38,7 @@ export const authApi = baseApi.injectEndpoints({
 });
 
 export const {
+  useGetSelfInfoQuery,
   useLoginMutation,
   useActivateAccountMutation,
   useSignInMutation,

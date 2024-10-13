@@ -16,5 +16,15 @@ export const baseApi = createApi({
     },
   }),
   tagTypes: ["me", "course"],
-  endpoints: () => ({}),
+  endpoints: (builder) => ({
+    invalidateAll: builder.mutation<void, void>({
+      query: () => ({
+        url: "/ping",
+        method: "GET",
+      }),
+      invalidatesTags: ["me", "course"],
+    }),
+  }),
 });
+
+export const { useInvalidateAllMutation } = baseApi;
