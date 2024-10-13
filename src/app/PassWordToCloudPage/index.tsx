@@ -2,7 +2,8 @@ import {
   useAddWordToWordCloudMutation,
   useGetWordCloudByIdQuery,
 } from "@/redux/api/wordCloudApi";
-import { Button, Input, message } from "antd";
+import PATHS from "@/router/paths";
+import { Button, Input, message, notification, QRCode } from "antd";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -19,6 +20,8 @@ const PassWordToCloudPage = () => {
       .unwrap()
       .then(() => {
         setWordSent(true);
+        notification.success({ message: "Udało się dodać frazę!" });
+        setWord("");
       })
       .catch((error) => {
         message.error(error.data?.message);
@@ -26,12 +29,11 @@ const PassWordToCloudPage = () => {
   };
 
   return (
-    <div>
-      <h1>{wordCloud?.question}</h1>
-      <div>
-        {wordSent && <p>Słowo zostało dodane</p>}
-        <Input value={word} onChange={(e) => setWord(e.target.value)} />
-        <Button onClick={handleAddWord}>Dodaj słowo</Button>
+    <div className="p-4 flex flex-col justify-center gap-24 pb-40 h-screen">
+      <h3>{wordCloud?.question}</h3>
+      <div className="flex flex-col gap-4">
+        <Input size="large" placeholder="Wpisz frazę" value={word} onChange={(e) => setWord(e.target.value)} />
+        <Button className="font-semibold py-6 text-lg" type="primary" onClick={handleAddWord}>Dodaj</Button>
       </div>
     </div>
   );
