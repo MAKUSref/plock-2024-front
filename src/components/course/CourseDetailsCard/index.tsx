@@ -9,6 +9,8 @@ import { Button, notification } from "antd";
 import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import CourseMemberBtn from "./CourseMemberBtn";
+import DownloadFilesBtn from "./DownloadFilesBtn";
+import SurveyBtn from "./SurveyBtn";
 
 const CourseDetailsCard = () => {
   const { id } = useParams<{ id: string }>();
@@ -34,8 +36,8 @@ const CourseDetailsCard = () => {
   };
 
   return (
-    <>
-      <div className="bg-white rounded-xl p-3 shadow-md -translate-y-2/3">
+    <div className="-translate-y-[160px] flex flex-col gap-6">
+      <div className="bg-white rounded-xl p-3 shadow-md ">
         <div>
           {amICourseMember && isAuth ? (
             <CourseMemberBtn />
@@ -63,11 +65,13 @@ const CourseDetailsCard = () => {
           </div>
         </div>
       </div>
+      <DownloadFilesBtn />
+      <SurveyBtn />
       <SignInModal
         open={registerModalOpen}
         handleClose={() => setRegisterModalOpen(false)}
       />
-    </>
+    </div>
   );
 };
 
