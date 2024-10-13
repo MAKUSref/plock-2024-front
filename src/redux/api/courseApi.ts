@@ -63,7 +63,7 @@ export const courseApi = baseApi.injectEndpoints({
     getCourseSurveyes: builder.query<any[], string>({
       query: (courseId) => `/survey/${courseId}/`,
     }),
-    getCourseSummarry: builder.query<{ content: string }, string>({
+    getCourseSummary: builder.query<{ content: string }, string>({
       query: (courseId) => `/survey/summary/${courseId}/`,
     }),
   }),
@@ -79,5 +79,5 @@ export const {
   useGetCourseParticipantsQuery,
   useUpdateCourseMutation,
   useGetCourseSurveyesQuery,
-  useGetCourseSummarryQuery
+  useLazyGetCourseSummaryQuery,
 } = courseApi;
