@@ -1,4 +1,4 @@
-import { User } from "./user";
+import { User, UserBase } from "./user";
 
 export interface Course {
   _id: string;
@@ -11,4 +11,10 @@ export interface Course {
   lecturers: User[];
   files?: string[];
   coverImgSrc: string;
+}
+
+export interface Participant {
+  _id: string;
+  user: UserBase;
+  presence: boolean;
 }

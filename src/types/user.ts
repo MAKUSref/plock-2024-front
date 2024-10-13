@@ -8,7 +8,7 @@ export interface UserBase {
 }
 
 export interface User extends UserBase {
-  id: string;
+  _id: string;
   description?: string;
 }
 
@@ -18,7 +18,7 @@ export type UserEmail = Pick<UserBase, "email">;
 
 export type UserRole = "admin" | "lecturer" | "user";
 
-export interface JwtPayload extends Pick<User, "id" | "role" | "email"> {
+export interface JwtPayload extends Pick<User, "_id" | "role" | "email"> {
   iat: number;
   exp: number;
 }

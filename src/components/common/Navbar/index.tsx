@@ -5,8 +5,9 @@ import { MenuOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import HamburgerMenu from "./HumburgerMenu";
 import LoginBtn from "./LoginBtn";
-import { useAuth } from "@/redux/selectors";
+import { useAuth, useUserRole } from "@/redux/selectors";
 import ProfileDropdown from "./ProfileDropdown";
+import { getRoleName } from "@/utils/getRoleName";
 
 export interface NavItem {
   title: string;
@@ -28,6 +29,7 @@ const Navbar = () => {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const isAuth = useAuth();
+  const userRole = useUserRole();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,7 +55,7 @@ const Navbar = () => {
         }`}
       >
         <div className="container flex justify-between items-center py-6">
-          <div className="">
+          <div className="flex items-center gap-6">
             <Link to={PATHS.HOME}>
               {navbarVisible ? (
                 <img src="/img/logo-main.svg" alt="..." />
@@ -61,6 +63,15 @@ const Navbar = () => {
                 <img src="/img/logo-main-light.svg" alt="..." />
               )}
             </Link>
+            {userRole && (
+              <p
+                className={`${
+                  navbarVisible ? "text-primary" : "text-white"
+                }  uppercase tracking-wider font-semibold`}
+              >
+                {getRoleName(userRole)}
+              </p>
+            )}
           </div>
           <div className="hidden md:flex items-center gap-8">
             <NavItems
