@@ -6,7 +6,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { setAuthToken } from "@/redux/slice/auth";
 import { LoginSchema } from "@/types/user";
 import { Alert, Button, Modal } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 
 const FORM_ID = "add-company";
@@ -35,6 +35,10 @@ const LoginModal = ({ open, handleClose }: LoginModalProps) => {
         setErrorMessage(error.data.message);
       });
   };
+
+  useEffect(() => {
+    formMethods.reset();
+  }, [formMethods, open]);
 
   return (
     <Modal

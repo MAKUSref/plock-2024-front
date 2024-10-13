@@ -8,7 +8,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { setAuthToken } from "@/redux/slice/auth";
 import { UserBase } from "@/types/user";
 import { Alert, Button, Modal, notification } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useParams } from "react-router-dom";
 
@@ -49,6 +49,10 @@ const SignInModal = ({ open, handleClose }: SignInModalProps) => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    formMethods.reset();
+  }, [formMethods, open]);
 
   return (
     <Modal

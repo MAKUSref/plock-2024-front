@@ -6,7 +6,7 @@ import {
 } from "@/redux/api/courseApi";
 import { useAuth, useUserRole } from "@/redux/selectors";
 import { EnvironmentOutlined, FieldTimeOutlined } from "@ant-design/icons";
-import { Button, notification } from "antd";
+import { Button, notification, QRCode } from "antd";
 import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import CourseMemberBtn from "./CourseMemberBtn";
@@ -86,7 +86,7 @@ const CourseDetailsCard = () => {
             <div className="flex justify-center items-center rounded-full bg-primary bg-opacity-15 w-10 h-10 text-2xl">
               <EnvironmentOutlined className="text-primary bg-opacity-100" />
             </div>
-            <p className="caption">{course?.location}</p>
+            <p className="caption text-sm">Łukasiewicza 39, Płock</p>
           </div>
         </div>
       </div>
@@ -96,6 +96,20 @@ const CourseDetailsCard = () => {
           <SurveyBtn />
         </>
       )}
+      <div className="flex justify-center flex-col">
+        <p className="pb-2 mt-10 px-10 text-center">
+          <strong>Grupa</strong> informacyjna dla uczestników
+        </p>
+        <div className="flex justify-center">
+          <QRCode
+            size={200}
+            value={"https://chat.whatsapp.com/JWBCCEADu8z9efX9C4Wo2I"}
+            className="w-full"
+            icon={"/whatsapp.png"}
+            iconSize={40}
+          />
+        </div>
+      </div>
       <SignInModal
         open={registerModalOpen}
         handleClose={() => setRegisterModalOpen(false)}
