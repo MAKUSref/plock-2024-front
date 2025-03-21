@@ -8,7 +8,7 @@ const LoginBtn = () => {
     <>
       <div
         onClick={() => setLoginModalOpen(true)}
-        className="text-primary bg-white py-2 px-5 rounded-md hover:cursor-pointer hover:shadow-md"
+        className="text-primary text-sm bg-white py-2 px-5 rounded-md hover:cursor-pointer hover:shadow-md"
       >
         Zaloguj się
       </div>

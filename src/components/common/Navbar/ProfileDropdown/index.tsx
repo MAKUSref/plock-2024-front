@@ -24,8 +24,12 @@ const ProfileDropdown = ({ navbarVisible }: ProfileDropdownProps) => {
       key: "0",
     },
     {
-      label: <Link className="text-base" to="/profile">Prelegenci</Link>,
-      key: '1',
+      label: (
+        <Link className="text-base" to="/profile">
+          Prelegenci
+        </Link>
+      ),
+      key: "1",
     },
     {
       type: "divider",
@@ -46,7 +50,9 @@ const ProfileDropdown = ({ navbarVisible }: ProfileDropdownProps) => {
           } cursor-pointer`}
         >
           <UserOutlined />
-          <span>{selfInfo?.name} {selfInfo?.surname}</span>
+          <span className="text-sm">
+            {selfInfo?.name} {selfInfo?.surname}
+          </span>
           <DownOutlined />
         </Space>
       </a>

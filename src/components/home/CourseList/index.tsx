@@ -64,8 +64,6 @@ const CourseList = () => {
     return [...monthsAfterNow, ...monthsBeforeNow];
   }, [courses]);
 
-  console.log(months);
-
   const coursesGroupedByMonth = useMemo(() => {
     return months.map((month) => {
       return {
@@ -85,17 +83,17 @@ const CourseList = () => {
 
   return (
     <>
-      <div className="flex md:flex-col items-center gap-3 flex-col-reverse">
+      <div className="flex md:flex-col items-center gap-1 flex-col-reverse">
         <div className="max-w-[500px] w-full py-3">
           <SearchInput />
         </div>
-        <div className="flex gap-1 py-3 flex-wrap justify-center">
+        <div className="flex gap-1  flex-wrap justify-center">
           {TAGS.map((tag, i) => (
             <Tag
               key={i}
               bordered={false}
               color={tag.name === searchTag ? tag.active : tag.color}
-              className="cursor-pointer px-[10px] text-base"
+              className="cursor-pointer px-[10px]  text-xs"
               onClick={() => handleSearchTag(tag.name)}
             >
               #{tag.name}
@@ -104,7 +102,7 @@ const CourseList = () => {
         </div>
       </div>
 
-      <p className="mt-40 md:mt-6  text-center text-xs">
+      <p className="mt-40 md:mt-10  text-center text-xs">
         {!!searchText && !!searchTag
           ? `Wyszukane szkolenia (${courses?.length}):`
           : `Wszystkie szkolenia (${courses?.length}):`}
@@ -126,9 +124,6 @@ const CourseList = () => {
             </div>
           </div>
         ))}
-        {/* {courses?.map((course, index) => (
-          <CourseCard key={index} course={course} />
-        ))} */}
       </div>
     </>
   );

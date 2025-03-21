@@ -34,9 +34,9 @@ const HomePage = () => {
       <div className="absolute top-0 left-0 right-0 -z-10">
         <img src="/img/bg.png" alt="..." className="w-full" />
       </div>
-      <div className="container pt-60">
+      <div className="container ">
         {courses && (
-          <div className="mb-10">
+          <div className="mb-10 pt-40">
             <h3 className="text-4xl">
               <span className="mr-2">Witaj</span>
               <span className="text-primary bg-opacity-100">

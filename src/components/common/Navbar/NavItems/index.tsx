@@ -9,13 +9,19 @@ interface NavItemsProps {
   onClose?: () => void;
 }
 
-const NavItems = ({ items, itemClassName, itemChildren, navbarVisible = true, onClose }: NavItemsProps) => {
+const NavItems = ({
+  items,
+  itemClassName,
+  itemChildren,
+  navbarVisible = true,
+  onClose,
+}: NavItemsProps) => {
   const navigate = useNavigate();
 
   const navigateTo = (path: string) => {
     navigate(path);
     onClose?.();
-  }
+  };
 
   return (
     <>
@@ -26,7 +32,7 @@ const NavItems = ({ items, itemClassName, itemChildren, navbarVisible = true, on
           className={() =>
             `${
               navbarVisible ? "text-caption" : "text-gray-200 hover:text-white"
-            } font-medium text-base ${itemClassName}`
+            } font-medium text-sm text-base ${itemClassName}`
           }
           onClick={() => navigateTo(path)}
         >

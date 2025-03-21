@@ -67,13 +67,13 @@ const Navbar = () => {
             : "bg-[#3853CF]"
         }`}
       >
-        <div className="container flex justify-between items-center py-6">
+        <div className="container flex justify-between items-center py-3">
           <div className="flex items-center gap-6">
             <Link to={PATHS.HOME}>
               {navbarVisible ? (
                 <img src="/img/logo-main.svg" alt="..." />
               ) : (
-                <img src="/img/logo-main-light.svg" alt="..." />
+                <img src="/img/logo-main-light.svg" alt="..." className="h-6" />
               )}
             </Link>
             {userRole && (

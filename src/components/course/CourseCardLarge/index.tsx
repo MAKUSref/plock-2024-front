@@ -19,9 +19,13 @@ const CourseCardLarge = ({ course }: { course: Course }) => {
           <p className="text-base">{course?.description}</p>
         </div>
         {!!course?.lecturers.length && (
-          <div className="flex items-center">
-            <div className="w-12 h-12 rounded-full overflow-hidden flex justify-center items-center">
-              <img src={course?.lecturers[0].imgSrc} alt="" />
+          <div className="flex items-center gap-2">
+            <div className="w-12 h-12 rounded-full  overflow-hidden flex justify-center items-center ">
+              <img
+                src={course?.lecturers[0].imgSrc}
+                alt=""
+                className="size-10 rounded-full"
+              />
             </div>
             <div className="flex flex-col justify-center">
               <p>
@@ -34,13 +38,13 @@ const CourseCardLarge = ({ course }: { course: Course }) => {
       </div>
       <div className="col-span-12 md:col-span-2 py-8 pr-8 flex flex-col justify-between">
         <div className="">
-          <p>14 października 2024</p>
-          <p className="font-semibold">18.30 - 20.00</p>
+          <p className="text-sm">14 października 2024</p>
+          <p className="font-semibold text-sm">18.30 - 20.00</p>
           <div className="flex items-center gap-3 pt-6">
             <div className="flex justify-center items-center rounded-full bg-primary bg-opacity-15 w-7 h-7 text-xl flex-grow-0 flex-shrink-0">
               <EnvironmentOutlined className="text-primary bg-opacity-100" />
             </div>
-            <p className="caption">Łukasiewicza 39, Płock</p>
+            <p className="caption text-sm">Łukasiewicza 39, Płock</p>
           </div>
         </div>
         <div>
